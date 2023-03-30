@@ -1,0 +1,159 @@
+<html>
+    <head>
+        <title>Explore course</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                font-family:montserrat;
+            }
+            nav{
+                background: #0082e6;
+                height : 80px;
+                width : 100%;
+            }
+            label.logo{
+                color:white;
+                font-size:35px;
+                line-height:80px;
+                padding: 0 100px;
+                font-weight: bold;
+            }
+            nav ul{
+                float : right;
+                margin-right : 20px;
+            }
+            nav ul li{
+                display: inline-block;
+                line-height:80px;
+                margin : 0 5px;
+            }
+            nav ul li a{
+               color: white;
+               font-size: 17px;
+               padding: 7px 13px;
+               border-radius: 3px;
+               text-transform:uppercase;
+               text-decoration:none;
+           }
+           a.active,a:hover{
+               background: #1b9bff;
+               transition: .5s;
+               text-decoration:underline;
+            }
+            .button-29 {
+                align-items: center;
+                appearance: none;
+                background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+                border: 0;
+                border-radius: 6px;
+                box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+                box-sizing: border-box;
+                color: #fff;
+                cursor: pointer;
+                display: inline-flex;
+                font-family: "JetBrains Mono",monospace;
+                height: 48px;
+                justify-content: center;
+                line-height: 1;
+                list-style: none;
+                overflow: hidden;
+                padding-left: 16px;
+                padding-right: 16px;
+                position: relative;
+                text-align: left;
+                text-decoration: none;
+                transition: box-shadow .15s,transform .15s;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                white-space: nowrap;
+                will-change: box-shadow,transform;
+                font-size: 18px;
+                margin-left: 100px;
+                height : 100px;
+                width : 250px;
+                font-size: 28px;
+              }
+              
+              .button-29:focus {
+                box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+              }
+              
+              .button-29:hover {
+                box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+                transform: translateY(-2px);
+                text-decoration : none; 
+              }
+              .button-29:active {
+                box-shadow: #3c4fe0 0 3px 7px inset;
+                transform: translateY(2px);
+              }
+              a{
+                text-decoration: none;
+              }
+              embed{
+                margin-left: 25%;
+                border: 5px solid blue;
+              }
+        </style>
+    </head>
+    <body>
+        {% if request.session.userName %}
+            <style>
+                nav{
+                    background:red;
+                }
+                a.active,a:hover{
+                    background:brown;
+                    color:yellow;
+                }
+                .button-29{
+                    background-image: radial-gradient(100% 100% at 100% 0,#FF512F , #DD2476 );
+                }
+                embed{
+                    border: 5px solid #ff512f;
+                }
+            </style>
+        {% endif %}
+        {% if request.session.userName %}
+            <nav>
+                <label class="logo">Online Course System</label>    
+                <ul>
+                    <li><a class="active" href="/students/check">Home</a></li>
+                    <li><a  href="/teachers/updateChapter">Update</a></li>
+                    <li><a href="/teachers/about">About</a></li>
+                    <li><a href="/teachers/services">Services</a></li>
+                    <li><a href="/teachers/feedback">Feedback</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+        {% else %}
+            <nav>
+                <label class="logo">Online Course System</label>    
+                <ul>
+                    <li><a class="active" href="/students/check">Home</a></li>
+                    <li><a  href="/students/search">Search</a></li>
+                    <li><a href="/students/about">About</a></li>
+                    <li><a href="/students/services">Services</a></li>
+                    <li><a href="/students/feedback">Feedback</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+        {% endif %}
+        <br><br><br><br>
+        <!-- HTML !-->
+        <a href="https://docs.google.com/forms/d/1_ZnYXO-LjYGooAW8CsI0Rfih3ueTVrgZlS6YsLwb0tk/edit" style="text-decoration:none;"><button class="button-29" role="button">Tests</button></a>
+        <br><br><br>
+        <a href="https://drive.google.com/drive/u/0/folders/1I8wWKd69ptwViACmouu4KHzM3yjTjA_a?sort=13&direction=a" style="text-decoration:none;"><button class="button-29" role="button">Materials</button></a>
+        <br><br><br><br><br><br><br>
+        <embed style="width:720px; height:450px;" src="https://www.youtube.com/embed/dFvd2urgpT8"/> 
+        <br><br><br><br><br><br><br><br><br>
+
+
+
+        <br>
+    </body>
+</html>

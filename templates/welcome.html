@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Website</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+      #welcome {
+        background-image: url("static/background.jpeg");
+        background-size: cover;
+        color: #14a6ea;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 500px;
+        text-align: center;
+        -webkit-transition: background 2s;
+        -moz-transition: background 2s;
+        -o-transition: background 2s;
+        transition: background 2s;
+      }
+      #welcome:hover {
+        background-image: url("static/background_temp.jpeg");
+        -webkit-transition: background 2s;
+        -moz-transition: background 2s;
+        -o-transition: background 2s;
+        transition: background 2s;
+      }
+      #navi a:hover {
+        background-color: #3f2cd1;
+        transition: 1s;
+      }
+      .butn {
+        display: inline-block;
+        background-color: #7b38d8;
+        padding: 20px;
+        width: 200px;
+        color: #ffffff;
+        text-align: center;
+        border: 4px double #cccccc;
+        border-radius: 10px; 
+        font-size: 28px;
+        cursor: pointer;
+        margin: 5px;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s; 
+        transition: all 0.5s;
+      }
+      .butn span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+      }
+      .butn span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+      }
+      .butn:hover {
+        background-color: darkblue;
+      }
+      .butn:hover span {
+        padding-right: 25px;
+      }
+      .butn:hover span:after {
+        opacity: 1;
+        right: 0;
+      }
+      #about-us {
+        background-image: url("static/about-us-background.jpeg");
+        background-image: url("static/black.webp");
+        background-size: cover;
+        color:red;
+        -webkit-transition: background 2s;
+        -moz-transition: background 2s;
+        -o-transition: background 2s;
+        transition: background 2s;
+      }
+      #services{
+        background-image: url("static/services.jpg");
+        background-size: cover;
+        color: auto;
+      }
+      #contact{
+        background-image: url("static/contact.jpg");
+        background-size: cover;
+        color: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="navi">
+      <nav>
+        <ul>
+          <li style="border:3px solid blue;border-color:black red black black;"><a href="#about-us">About</a></li>
+          <li style="border:3px solid blue;border-color:black red black black;"><a href="#services">Services</a></li>
+          <li style="border:3px solid blue;border-color:black red black black;"><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    {% comment %} <button style="width: 100%; height: 50px; font-size: 24px;">Click me!</button> {% endcomment %}
+    <main>
+      <section id="welcome">
+        <a href="students/signin" class="butn">Student</a>
+        <br>
+        <a href="teachers/signin" class="butn">Teacher</a>
+        <h1 style="color:#e3fc66">Welcome to My Website</h1>
+        <p style="color:#e3fc66">Thank you for visiting my website. Please feel free to browse around and explore.</p>
+        <a href="#services" class="btn">Learn More</a>
+      </section>
+      <br><hr><br>
+      {% comment %} <section id="about">
+        <h2>About Us</h2>
+        <p>We are a team of experienced professionals dedicated to providing high-quality services to our clients.</p>
+      </section> {% endcomment %}
+      <section id="about-us">
+        
+        <h2 style="text-align:center">About Application</h2>
+        <div class="about-us-content">
+          <p>An online course system is a kind of educational platorm in which a student can learn and develop variour things. We made this project for the subject of Sp in sem-4 of the computer engineering department in dharmsinh desai university.</p>
+          <p>In our system a teacher can add courses which can be purchased by the student by paying a certain amount of fees decided by the teachers. In our system a teacher can upload things like chapter wise videos, chapter wise notes, chapter wise content and can take exams. So that subscriber can see those things and get good score in exam.The purpose of this document is to make system more practical teachers can provide study material, providing assignments, take quiz etc.</p>
+          <h3>Our Team</h3>
+          <div class="team-members">
+            <div class="team-member">
+              <img src="static/fenil.png" alt="Team Member 1">
+              <h4>Fenil Modi</h4>
+              <p>Founder &amp; CEO</p>
+            </div>
+            <div class="team-member">
+              <img src="team-member-2.png" alt="Team Member 2">
+              <h4>Prit Monpara</h4>
+              <p>COO</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <br><hr><br>
+      <section id="services">
+        <h2 style="text-align:center;">Our Services</h2>
+        <ul>
+          <li>Marketing Services</li>
+          <li>Web App Development</li>
+          <li>24/7 Call Center Services</li>
+          <li>Social Media Marketing</li>
+          <li>Corporate Business</li>
+          <li>Creative Consultan</li>
+        </ul>
+      </section>
+      <br><hr><br>
+      <section id="contact">
+        <h2 style="text-align:center;">Contact Us</h2>
+        <form action="/" method="POST">
+          {% csrf_token %}
+          {% if message|default:"none" != "none" %}
+            <br>
+            <h2 style="color:darkgreen;text-align:center">{{message}}</h3>
+            <br>
+          {% endif %}
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" required></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2023 My Website. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

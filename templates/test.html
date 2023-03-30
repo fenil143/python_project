@@ -1,0 +1,129 @@
+{% load static %}
+<html>
+    <head>
+        <title>This is just for test</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            
+            body{
+                font-family:montserrat;
+            }
+            nav{
+                background: #0082e6;
+                height : 80px;
+                width : 100%;
+            }
+            label.logo{
+                color:white;
+                font-size:35px;
+                line-height:80px;
+                padding: 0 100px;
+                font-weight: bold;
+            }
+            nav ul{
+                float : right;
+                margin-right : 20px;
+            }
+            nav ul li{
+                display: inline-block;
+                line-height:80px;
+                margin : 0 5px;
+            }
+            nav ul li a{
+               color: white;
+               font-size: 17px;
+               padding: 7px 13px;
+               border-radius: 3px;
+               text-transform:uppercase;
+               text-decoration:none;
+           }
+           a.active,a:hover{
+               background: #1b9bff;
+               transition: .5s;
+               text-decoration:underline;
+            }
+            
+            .container{
+                margin-top : 2%;
+                margin-left: 4%;
+            }
+            .mycard{
+                margin-top: 4%;
+            }
+            .inner{
+                overflow: hidden;
+            }
+            .inner img{
+                transition: all 1.5s ease;
+            }
+            .inner:hover img{
+                transform: scale(1.5)
+            }
+        </style>
+
+    </head>
+    <body>
+        {% if request.session.userName %}
+            <style>
+                nav{
+                    background:red;
+                }
+                a.active,a:hover{
+                    background:brown;
+                    color:yellow;
+                }
+            </style>
+        {% endif %}
+        <nav>
+            <label class="logo">Online Course System</label>    
+            <ul>
+                <li><a class="active" href="#">Home</a></li>
+                {% if request.session.userName %}
+                    <li><a href="create">Create</a></li>
+                {% else %}
+                    <li><a href="search">Search</a></li>
+                {% endif %}
+                <li><a href="about">About</a></li>
+                <li><a href="services">Services</a></li>
+                <li><a href="feedback">Feedback</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            <div class="row justify-content-center">
+                {% for course in courses %}
+                    <div class="col-md-4 mycard">
+                        <div class="card shadow" style="width: 20rem;">
+                            <div class="inner">
+                                <img class="card-img-top" src="/static/{{course.courseImage}}" alt="Card image cap" width="500
+                                " height="250">
+                            </div>
+                            <div class="card-body text-center">
+                            <h4 class="card-title"><b>{{course.courseName}}</b></h4>
+                            <p class="card-text"><b>Course-scope : </b>{{course.courseScope}}</p>
+                            <p class="card-text"><b>Course-description : </b>{{course.courseDescription}}</p>
+                            {% if request.session.userName%}
+                                <a href="chapter/{{course.courseId}}" class="btn btn-primary" style="background:red;">Learn more...</a>
+                            {% else %}
+                                <a href="chapter/{{course.courseId}}" class="btn btn-primary" style="background:#0082e6;">Learn more...</a>
+                            {% endif %}  
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% comment %} <div class="col-md-4 mycard">
+                    <div class="card shadow" style="width: 20rem;">
+                        <div class="inner">
+                            <img class="card-img-top" src="/static/background.jpeg" alt="Card image cap">
+                        </div>
+                        <div class="card-body text-center">
+                        <h5 class="card-title">Maths</h5>
+                        <p class="card-text">Hello this maths course for cbse 9,10,11. Here you can get everything that you want. All materials will be provided. Test will be conducted day by day. You can also ask your doubt here.</p>
+                        <a href="#" class="btn btn-primary">Learn more...</a>
+                        </div>
+                    </div>
+                </div> {% endcomment %}
+            </div>
+        </div>
+    </body>
+</html>

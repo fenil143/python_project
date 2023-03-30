@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About-Us</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+        <style>
+            *{
+                margin: 0 ;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                font-family: montserrat;
+            }
+            
+            nav {
+                margin: 0;
+                padding: 0;
+                background: #0082e6;
+                height: 80px;
+                width: 100%;
+            }
+            
+            label.logo {
+                color: white;
+                font-size: 35px;
+                line-height: 80px;
+                margin-left: 7%;
+                padding: 0 0px;
+                font-weight: bold;
+            }
+            
+            nav ul {
+                float: right;
+                margin-right: 20px;
+            }
+            
+            nav ul li {
+                display: inline-block;
+                line-height: 80px;
+                margin: 0 5px;
+            }
+            
+            nav ul li a {
+                color: white;
+                font-size: 17px;
+                padding: 7px 13px;
+                border-radius: 3px;
+                text-transform: uppercase;
+                text-decoration:none;
+            }
+            
+            nav a.active,
+            nav a:hover {
+                background: #1b9bff;
+                transition: .5s;
+                text-decoration:underline;
+            }
+            
+            .section{
+                font-family: "Poppins",sans-serif;
+                width:100%;
+                min-height: 100vh;
+                background-color:#ddd;
+            }
+
+            .container {
+                width: 80%;
+                display: block;
+                margin:auto;
+                padding-top:100px;
+            }
+
+            .content-section{
+                float:left;
+                width: 55%;
+            }
+
+            .image-section{
+                float:right;
+                width: 40%;
+            }
+
+            .image-section img{
+                width: 100%;
+                height: auto;
+            }
+
+            .content-section .title{
+                text-transform : uppercase;
+                font-size: 28px;
+            }
+
+            .content-section .content h3{
+                margin-top: 20px;
+                color: #5d5d5d;
+                font-size: 22px;
+            }
+
+            .content-section .content p{
+                margin-top : 10px;
+                font-family: sans-serif;
+                font-size: 18px;
+                line-height: 1.5;
+            }
+
+            .content-section .content .button{
+                margin-top : 30px;
+            }
+
+            .content-section .content .button a{
+                background-color: #3d3d3d;
+                padding : 12px 40px;
+                text-decoration: none;
+                color: #fff;
+                font-size: 25px;
+                letter-spacing : 1.5px;
+            }
+
+            .content-section .content .button a:hover{
+                background-color: #a52a2a;
+                color: #fff;
+            }
+
+            .content-section .social{
+                margin: 40px 40px;
+            }
+
+            .content-section .social i{
+                color: #a52a2a;
+                font-size: 30px;
+                padding: 0px 10px;
+            }
+
+            .content-section .social i:hover{
+                color: #3d3d3d;
+            }
+
+            @media screen and (max-width: 768px){
+                .container{
+                    width: 80%;
+                    display: block;
+                    margin: auto;
+                    padding-top: 50px;
+                }
+                .content-section{
+                    float:none;
+                    width:100%;
+                    display: block;
+                    margin: auto;
+                }
+                .image-section{
+                    float:none;
+                    width:100%;
+                    display: block;
+                    margin: auto;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        {% if request.session.userName %}
+            <style>
+                nav{
+                    background:red;
+                }
+                li a.active,a:hover{
+                    background:brown;
+                    color:yellow;
+                }
+                li a:hover{
+                    background-color:brown;
+                }
+            </style>
+        {% endif %}
+        <nav>
+            <label class="logo">Online Course System</label>    
+            <ul>
+                <li><a href="check">Home</a></li>
+                {% if request.session.userName %}
+                    <li><a href="create">Create</a></li>
+                {% else %}
+                    <li><a href="search">Search</a></li>
+                {% endif %}
+                <li><a href="about" class="active">About</a></li>
+                <li><a href="services">Services</a></li>
+                <li><a href="feedback">Feedback</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="section">
+            <div class="container">
+                <div class="content-section">
+                    <div class="title">
+                        <h1>About Us</h1>
+                    </div>
+                    <div class="content">
+                        <h3>Online course system </h3>
+                        <p>An online course system is a kind of educational platform in which a student can learn and develop variour things. In our system a teacher can add courses which can be purchased by the student by paying a certain amount of fees decided by the teachers. In our system a teacher can upload things like chapter wise videos, chapter wise notes, chapter wise content and can take exams.</p>
+                        <div class="button">
+                            <a href="readMore">Read More</a>
+                        </div>
+                    </div>
+                    <div class="social">
+                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/i/flow/login"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="image-section">
+                    <img src="/static/fenil.png" style="height:350px;">
+                </div>
+            </div>
+        </div>
+                        
+    </body>
+</html>
