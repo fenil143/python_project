@@ -22,6 +22,4 @@ urlpatterns = [
     path("/updateChapter",views.updateChapter),
     path("/readMore",views.readMore),
     path("/update",views.update),
-    # path('teachers/',include('teachers.urls')),
-    # path('courses/',include('courses.urls')),
 ]

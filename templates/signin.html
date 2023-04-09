@@ -91,7 +91,7 @@
       <form action="check" method="POST">
         {% csrf_token %}
         {% if error|default:"none" != "none" %}
-          <div style="color:red;font-size:15px;">
+          <div style="color:red;font-size:15px;margin-bottom:35px;">
             <b><span>{{ error }}</span></b>
           </div>
           <br>

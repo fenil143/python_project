@@ -27,6 +27,4 @@ urlpatterns = [
     path('students/',include('students.urls')),
     path('teachers',include('teachers.urls')),
     path("logout/",views.logout),
-    # path('teachers/',include('teachers.urls')),
-    # path('courses/',include('courses.urls')),
 ]

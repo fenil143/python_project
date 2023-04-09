@@ -34,13 +34,5 @@ class Migration(migrations.Migration):
                 ('userId', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='teachers.teacher')),
             ],
         ),
-        migrations.CreateModel(
-            name='AccountDetail',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('accountNumber', models.IntegerField()),
-                ('amountNumber', models.IntegerField()),
-                ('userId', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='teachers.teacher')),
-            ],
-        ),
+        
     ]

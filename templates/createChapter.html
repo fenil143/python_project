@@ -199,7 +199,7 @@
             </ul>
         </nav>
         {% if error|default:"none" != "none" %}
-            <h2 style="color:darkred;text-align:center;margin:5px;">{{error}}</h2>
+            <h2 style="color:darkred;text-align:center;margin-top:30px;margin-bottom:30px;">{{error}}</h2>
         {% else %}
             <style>
                 .container{
@@ -214,28 +214,28 @@
                 <div class="user-details">
                   <div class="input-box">
                     <span class="details">Enter chapter id</span>
-                    <input type="number" placeholder="Enter id of chapter" name="chapterId" required>
+                    <input type="number" placeholder="Enter id of chapter" name="chapterId" value="{{chapterId|default:''}}" required>
                   </div>
                   <div class="input-box">
                     <span class="details">Chapter number</span>
-                    <input type="number" placeholder="Enter chapter number" name="chapterNumber" required>
+                    <input type="number" placeholder="Enter chapter number" name="chapterNumber" value="{{chapterNumber|default:''}}" required>
                   </div>
                   <div class="input-box">
                     <span class="details">Username</span>
-                    <input type="text" placeholder="Enter your username" name="userName" required>
+                    <input type="text" placeholder="Enter your username" name="userName" value="{{userName|default:''}}" required>
                   </div>
                   <div class="input-box">
                     <span class="details">Password</span>
-                    <input type="text" placeholder="Enter your password" name="password" required>
+                    <input type="text" placeholder="Enter your password" name="password" value="{{password|default:''}}" required>
                   </div>
                   <div class="input-box">
                     <span class="details">Enter test link</span>
-                    <textarea cols="80" rows="2" placeholder="Enter test link" style="padding:5px;" name="testLink" required></textarea>
+                    <textarea cols="80" rows="2" placeholder="Enter test link" style="padding:5px;" name="testLink" required>{{testLink|default:''}}</textarea>
                   </div>
                   <br><br><br>
                   <div>
                     <span class="details">Enter materials link</span>
-                    <textarea cols="80" rows="2" placeholder="Enter materials link" style="padding:5px;" name="materialLink" required></textarea>
+                    <textarea cols="80" rows="2" placeholder="Enter materials link" style="padding:5px;" name="materialLink" required>{{materialLink|default:''}}</textarea>
                   </div>
                   {% comment %} <div class="input-box">
                     <span class="details">Enter course-description</span>

@@ -122,8 +122,8 @@
             <nav>
                 <label class="logo">Online Course System</label>    
                 <ul>
-                    <li><a class="active" href="/students/check">Home</a></li>
-                    <li><a  href="/teachers/updateChapter">Update</a></li>
+                    <li><a href="/teachers/check">Home</a></li>
+                    <li><a href="/teachers/updateChapter">Update</a></li>
                     <li><a href="/teachers/about">About</a></li>
                     <li><a href="/teachers/services">Services</a></li>
                     <li><a href="/teachers/feedback">Feedback</a></li>
@@ -134,8 +134,8 @@
             <nav>
                 <label class="logo">Online Course System</label>    
                 <ul>
-                    <li><a class="active" href="/students/check">Home</a></li>
-                    <li><a  href="/students/search">Search</a></li>
+                    <li><a href="/students/check">Home</a></li>
+                    <li><a href="/students/search">Search</a></li>
                     <li><a href="/students/about">About</a></li>
                     <li><a href="/students/services">Services</a></li>
                     <li><a href="/students/feedback">Feedback</a></li>
@@ -145,9 +145,11 @@
         {% endif %}
         <br><br><br><br>
         <!-- HTML !-->
-        <a href="https://docs.google.com/forms/d/1_ZnYXO-LjYGooAW8CsI0Rfih3ueTVrgZlS6YsLwb0tk/edit" style="text-decoration:none;"><button class="button-29" role="button">Tests</button></a>
+        {% comment %} https://docs.google.com/forms/d/1_ZnYXO-LjYGooAW8CsI0Rfih3ueTVrgZlS6YsLwb0tk/edit
+        https://drive.google.com/drive/u/0/folders/1I8wWKd69ptwViACmouu4KHzM3yjTjA_a?sort=13&direction=a {% endcomment %}
+        <a href="{{chapter.tests}}" style="text-decoration:none;"><button class="button-29" role="button">Tests</button></a>
         <br><br><br>
-        <a href="https://drive.google.com/drive/u/0/folders/1I8wWKd69ptwViACmouu4KHzM3yjTjA_a?sort=13&direction=a" style="text-decoration:none;"><button class="button-29" role="button">Materials</button></a>
+        <a href="{{chapter.materials}}" style="text-decoration:none;"><button class="button-29" role="button">Materials</button></a>
         <br><br><br><br><br><br><br>
         <embed style="width:720px; height:450px;" src="https://www.youtube.com/embed/dFvd2urgpT8"/> 
         <br><br><br><br><br><br><br><br><br>

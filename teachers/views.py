@@ -35,9 +35,7 @@ def check(request):
         request.session['userName'] = name
         request.session['password'] = passw
         teacher = teachers[0]
-        print(teacher)
         temp = TeacherCourse.objects.filter(userName=teacher['Id']).values()
-        print(temp)
         courses = []
         for crc in temp:
             temp1 = Course.objects.filter(courseId=crc['courseId']).values()
@@ -54,13 +52,24 @@ def signup(request):
 
 def signupcheck(request):
     teachers1 = Teacher.objects.filter(Id = request.POST.get('id')).values()
+    send = {}
+    send['id'] = request.POST.get('id')
+    send['userName'] = request.POST.get('userName')
+    send['password'] = request.POST.get('password')
+    send['phoneNo'] = request.POST.get('phoneNo')
+    send['firstName'] = request.POST.get('firstName')
+    send['middleName'] = request.POST.get('middleName')
+    send['state'] = request.POST.get('state')
+    send['city'] = request.POST.get('city')
     if len(teachers1) > 0:
         error = "please select another id"
-        return render(request,"signup.html",{"error":error})
+        send['error'] = error
+        return render(request,"signup.html",send)
     teachers2 = Teacher.objects.filter(userName = request.POST.get('userName')).values()
     if len(teachers2)>0:
         error = "please select another user-name"
-        return render(request,"signup.html",{"error":error})
+        send['error'] = error
+        return render(request,"signup.html",send)
     teacher = Teacher()
     teacher.Id = request.POST.get('id')
     teacher.userName = request.POST.get('userName')
@@ -68,7 +77,6 @@ def signupcheck(request):
     teacher.phoneNo = request.POST.get('phoneNo')
     teacher.firstName = request.POST.get('firstName')
     teacher.middleName = request.POST.get('middleName')
-    # teacher.lastName = request.POST.get('lastName')
     teacher.state = request.POST.get('state')
     teacher.city = request.POST.get('city')
     
@@ -116,14 +124,17 @@ def save(request):
     c_image = request.GET.get("backgroundImage")
     userName = request.GET.get("userName")
     password = request.GET.get("password")
+    save = {"courseId":c_id,"courseName":c_name,"courseDescription":c_description,"courseScope":c_scope,"backgroundImage":c_image,"userName":userName,"password":password}
     course = Course.objects.filter(courseId = c_id).values()
     teachers = Teacher.objects.filter(userName = userName,password = password).values()
     if course:
         error = "Please select another course-id"
-        return render(request,"create.html",{"error":error})
+        save["error"] = error
+        return render(request,"create.html",save)
     if len(teachers) == 0:
         error = "please enter valid username and password"
-        return render(request,"create.html",{"error":error})
+        save["error"] = error
+        return render(request,"create.html",save)
     else:
         temp = Course()
         temp.courseId = c_id
@@ -170,14 +181,17 @@ def saveChapter(request):
     password = request.GET.get('password')
     testLink = request.GET.get('testLink')
     materialLink = request.GET.get('materialLink')
+    save = {"chapterId":c_id,"chapterNumber":c_number,"materialLink":materialLink,"testLink":testLink,"userName":userName,"password":password}
     chapter = Chapter.objects.filter(chapterId = c_id).values()
     check = True if userName == request.session['userName'] and password == request.session['password'] else False
     if chapter:
         error = "Please select another course-id"
-        return render(request,"createChapter.html",{"error":error})
+        save["error"] = error
+        return render(request,"createChapter.html",save)
     if check == False:
         error = "please enter valid username and password"
-        return render(request,"createChapter.html",{"error":error})
+        save["error"] = error
+        return render(request,"createChapter.html",save)
     else:
         temp = Chapter()
         temp.chapterId = c_id
@@ -216,25 +230,20 @@ def update(request):
     if "userName" not in request.session:
         response = redirect("/teachers/signin")
         return response
-    userName = request.GET.get('userName')
-    password = request.GET.get('password')
     testLink = request.GET.get('testLink')
     materialLink = request.GET.get('materialLink')
     c_id = request.session["chapterId"]
-    check = True if userName == request.session['userName'] and password == request.session['password'] else False
-    if check == False:
-        error = "please enter valid username and password"
-        return render(request,"updateChapter.html",{"error":error})
-    else:
-        temp = Chapter.objects.get(chapterId = c_id)
-        if testLink:
-            print("hello1")
-            temp.tests = testLink
-        if materialLink:
-            print("hello2")
-            temp.materials = materialLink
-        temp.save()
-        return render(request,"updateChapter.html")
+    temp = Chapter.objects.get(chapterId = c_id)
+    if testLink:
+        temp.tests = testLink
+    if materialLink:
+        temp.materials = materialLink
+    temp.save()
+    num = (request.session['chapterId'])
+    str1 = "/teachers/explore/"+str(num)
+    print(str)
+    response = redirect(str1)
+    return response
     
 def deleteChapter(request):
     if "userName" not in request.session:
@@ -247,6 +256,9 @@ def delete(request):
         response = redirect("/teachers/signin")
         return response
     Id1 = request.GET.get('chapterId')
+    chapter = Chapter.objects.filter(chapterId = Id1).values()
+    if len(chapter) == 0 :
+        return render(request,"deleteChapter.html",{"error":"please enter valid chapterId"})
     chapter = Chapter.objects.get(chapterId = Id1)
     chapter.delete()
     num = (request.session['courseId'])

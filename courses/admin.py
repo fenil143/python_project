@@ -3,7 +3,6 @@ from .models import Course
 from .models import CourseChapter
 from .models import Chapter
 from .models import ChapterVideo
-# Register your models here.
 
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('courseId','courseName','courseScope','courseDescription','courseImage','courseBackgroundImage')

@@ -197,7 +197,7 @@
             </ul>
         </nav>
         {% if error|default:"none" != "none" %}
-            <h2 style="color:darkred;text-align:center;margin:5px;">{{error}}</h2>
+            <h2 style="color:darkred;text-align:center;margin-top:15px;margin-bottom:15px;">{{error}}</h2>
         {% else %}
             <style>
                 .container{
@@ -212,31 +212,31 @@
                 <div class="user-details">
                   <div class="input-box">
                     <span class="details">Enter course id</span>
-                    <input type="number" placeholder="Enter id of course" name="courseId" required>
+                    <input type="number" placeholder="Enter id of course" name="courseId" value="{{courseId|default:''}}" required>
                   </div>
                   <div class="input-box">
                     <span class="details">Course Name</span>
-                    <input type="text" placeholder="Enter course name" name="courseName" required>
+                    <input type="text" placeholder="Enter course name" name="courseName" value="{{courseName|default:''}}" required>
                   </div>
                   <div class="input-box">
                     <span class="details">Username</span>
-                    <input type="text" placeholder="Enter your username" name="userName" required>
+                    <input type="text" placeholder="Enter your username" name="userName" value="{{userName|default:''}}" required>
                   </div>
                   <div class="input-box">
                     <span class="details">Password</span>
-                    <input type="text" placeholder="Enter your password" name="password" required>
+                    <input type="text" placeholder="Enter your password" name="password" value="{{password|default:''}}" required>
                   </div>
                   <div class="input-box">
                     <span class="details">Enter course scope</span>
-                    <input type="date" placeholder="Enter scope of course" name="courseScope" required>
+                    <input type="date" placeholder="Enter scope of course" name="courseScope" value="{{courseScope|default:''}}" required>
                   </div>
                   <div class="input-box">
                     <span class="details">Enter course-image</span>
-                    <input type="file" style="padding-top:10px;" placeholder="Enter background-image" name="backgroundImage" required>
+                    <input type="file" style="padding-top:10px;" placeholder="Enter background-image" name="backgroundImage" value="{{backgroundImage|default:''}}" required>
                   </div>
                   <div class="input-box">
                     <span class="details">Enter course-description</span>
-                    <textarea cols="80" rows="5" placeholder="Enter course description" style="padding:5px;" name="courseDescription" required></textarea>
+                    <textarea cols="80" rows="5" placeholder="Enter course description" style="padding:5px;"  name="courseDescription"  required>{{courseDescription|default:''}}</textarea>
                   </div>
                 </div>
                 <div class="button">

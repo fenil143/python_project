@@ -16,6 +16,4 @@ urlpatterns = [
     path("services",views.services),
     path("feedback",views.feedback),
     path("readMore",views.readMore),
-    # path('teachers/',include('teachers.urls')),
-    # path('courses/',include('courses.urls')),
 ]

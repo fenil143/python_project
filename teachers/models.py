@@ -13,11 +13,7 @@ class Teacher(models.Model):
     state = models.CharField(max_length= 50)
     city = models.CharField(max_length = 50)
     
-class AccountDetail(models.Model):
-    userName = models.ForeignKey("Teacher",on_delete=models.CASCADE)
-    accountNumber = models.IntegerField()
-    amountNumber = models.IntegerField()
-    
+
 class TeacherCourse(models.Model):
     userName = models.ForeignKey("Teacher",on_delete=models.CASCADE)
     courseId = models.IntegerField()

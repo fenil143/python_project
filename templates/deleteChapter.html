@@ -193,14 +193,14 @@
             <ul>
                 <li><a href="check">Home</a></li>
                 <li><a href="create-chapter">Create</a></li>
-                <li><a class="active" href="delete">Delete</a></li>
+                <li><a class="active" href="#">Delete</a></li>
                 <li><a href="services">Services</a></li>
                 <li><a href="feedback">Feedback</a></li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </nav>
         {% if error|default:"none" != "none" %}
-            <h2 style="color:darkred;text-align:center;margin:5px;">{{error}}</h2>
+            <h2 style="color:darkred;text-align:center;margin-top:30px;margin-bottom:30px;">{{error}}</h2>
         {% else %}
             <style>
                 .container{

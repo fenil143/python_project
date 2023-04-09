@@ -191,35 +191,31 @@
             <label class="logo">Online Course System</label>    
             <ul>
                 <li><a href="check">Home</a></li>
-                <li><a class="active" href="#">Create</a></li>
+                <li><a class="active" href="#">Update</a></li>
                 <li><a href="about">About</a></li>
                 <li><a href="services">Services</a></li>
                 <li><a href="feedback">Feedback</a></li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </nav>
-        {% if error|default:"none" != "none" %}
-            <h2 style="color:darkred;text-align:center;margin:5px;">{{error}}</h2>
-        {% else %}
-            <style>
-                .container{
-                    margin-top: 4%
-                }
-            </style>
-        {% endif %}
+        <style>
+            .container{
+                margin-top: 4%
+            }
+        </style>
         <div class="container">
             <div class="title">Updation of chapter</div>
             <div class="content">
               <form action="update">
                 <div class="user-details">
-                  <div class="input-box">
+                  {% comment %} <div class="input-box">
                     <span class="details">Username</span>
                     <input type="text" placeholder="Enter your username" name="userName" required>
                   </div>
                   <div class="input-box">
                     <span class="details">Password</span>
                     <input type="text" placeholder="Enter your password" name="password" required>
-                  </div>
+                  </div> {% endcomment %}
                   <div class="input-box">
                     <span class="details">Enter new test link</span>
                     <textarea cols="80" rows="2" placeholder="New test link" style="padding:5px;" name="testLink"></textarea>

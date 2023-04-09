@@ -3,7 +3,7 @@ from .models import Student
 from .models import StudentCourse
 from .models import Payment
 
-# Register your models here
+
 
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('Id','userName','password','phoneNo','firstName','middleName','lastName','state','city')

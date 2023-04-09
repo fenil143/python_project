@@ -35,9 +35,7 @@ def check(request):
         request.session['studentName'] = name
         request.session['password'] = passw
         stud = student[0]
-        print(stud)
         temp = StudentCourse.objects.filter(userName=stud['Id']).values()
-        print(temp)
         courses = []
         for crc in temp:
             temp1 = Course.objects.filter(courseId=crc['courseId']).values()
@@ -60,7 +58,6 @@ def signupcheck(request):
     student.phoneNo = request.POST.get('phoneNo')
     student.firstName = request.POST.get('firstName')
     student.middleName = request.POST.get('middleName')
-    # student.lastName = request.POST.get('lastName')
     student.state = request.POST.get('state')
     student.city = request.POST.get('city')
     
@@ -110,7 +107,6 @@ def add(request,name):
     courses = Course.objects.filter(courseName = name).values()
     course = courses[0]
     studentCourses = StudentCourse.objects.filter(userName = s_stud['Id'],courseId = course['courseId']).values()
-    print(studentCourses)
     if studentCourses:
         return response
     else:
@@ -118,8 +114,6 @@ def add(request,name):
         temp = StudentCourse()
         temp.userName = student
         temp.courseId = course['courseId']
-        print("yes")
-        print(temp)
         temp.save()
         return response
     
@@ -139,9 +133,6 @@ def feedback(request):
     if "studentName" not in request.session:
         response = redirect("/students/signin")
         return response
-    print(request.GET.get("name"))
-    print(request.GET.get("email"))
-    print(request.GET.get("phoneNumber"))
     name = request.GET.get("name")
     email = request.GET.get("email")
     phoneNumber = request.GET.get("phoneNumber")
