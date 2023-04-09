@@ -105,6 +105,12 @@
             .user-details .input-box input:valid{
             border-color: #9b59b6;
             }
+
+            .user-details .input-box textarea:focus,
+            .user-details .input-box textarea:valid{
+            border-color: #9b59b6;
+            }
+
             form .gender-details .gender-title{
             font-size: 20px;
             font-weight: 500;
@@ -220,14 +226,14 @@
                     <span class="details">Chapter number</span>
                     <input type="number" placeholder="Enter chapter number" name="chapterNumber" value="{{chapterNumber|default:''}}" required>
                   </div>
-                  <div class="input-box">
+                  {% comment %} <div class="input-box">
                     <span class="details">Username</span>
                     <input type="text" placeholder="Enter your username" name="userName" value="{{userName|default:''}}" required>
                   </div>
                   <div class="input-box">
                     <span class="details">Password</span>
                     <input type="text" placeholder="Enter your password" name="password" value="{{password|default:''}}" required>
-                  </div>
+                  </div> {% endcomment %}
                   <div class="input-box">
                     <span class="details">Enter test link</span>
                     <textarea cols="80" rows="2" placeholder="Enter test link" style="padding:5px;" name="testLink" required>{{testLink|default:''}}</textarea>
@@ -237,10 +243,10 @@
                     <span class="details">Enter materials link</span>
                     <textarea cols="80" rows="2" placeholder="Enter materials link" style="padding:5px;" name="materialLink" required>{{materialLink|default:''}}</textarea>
                   </div>
-                  {% comment %} <div class="input-box">
-                    <span class="details">Enter course-description</span>
-                    <textarea cols="80" rows="5" placeholder="Enter course description" style="padding:5px;" name="courseDescription" required></textarea>
-                  </div> {% endcomment %}
+                  <div class="input-box" style="margin-top:15px;">
+                    <span class="details">Enter video link</span>
+                    <textarea cols="80" rows="2" placeholder="Paste link of video" style="padding:5px;" name="video" required>{{video|default:''}}</textarea>
+                  </div>
                 </div>
                 <div class="button">
                   <input type="submit" value="Register">

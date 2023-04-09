@@ -177,19 +177,13 @@ def saveChapter(request):
         return response
     c_id = request.GET.get('chapterId')
     c_number = request.GET.get('chapterNumber')
-    userName = request.GET.get('userName')
-    password = request.GET.get('password')
     testLink = request.GET.get('testLink')
     materialLink = request.GET.get('materialLink')
-    save = {"chapterId":c_id,"chapterNumber":c_number,"materialLink":materialLink,"testLink":testLink,"userName":userName,"password":password}
+    video = request.GET.get('video')
+    save = {"chapterId":c_id,"chapterNumber":c_number,"materialLink":materialLink,"testLink":testLink,"video":video}
     chapter = Chapter.objects.filter(chapterId = c_id).values()
-    check = True if userName == request.session['userName'] and password == request.session['password'] else False
     if chapter:
-        error = "Please select another course-id"
-        save["error"] = error
-        return render(request,"createChapter.html",save)
-    if check == False:
-        error = "please enter valid username and password"
+        error = "Please select another chapter-id"
         save["error"] = error
         return render(request,"createChapter.html",save)
     else:
@@ -205,6 +199,10 @@ def saveChapter(request):
         temp1.courseId = temp_course
         temp1.chapterId = temp_chapter
         temp1.save()
+        temp2 = ChapterVideo()
+        temp2.chapterId = temp_chapter
+        temp2.video = video
+        temp2.save()
         num = (request.session['courseId'])
         str1 = "/teachers/chapter/"+str(num)
         print(str)
@@ -218,7 +216,7 @@ def explore(request, id):
     request.session["chapterId"] = id
     chapter = Chapter.objects.filter(chapterId = id).values()
     chapterVideos = ChapterVideo.objects.filter(chapterId = id).values()
-    return render(request,'explore.html',{'chapter':chapter[0],'chapterVideos':chapterVideos})
+    return render(request,'explore.html',{'chapter':chapter[0],'chapterVideos':chapterVideos[0]})
 
 def updateChapter(request):
     if "userName" not in request.session:
@@ -232,13 +230,18 @@ def update(request):
         return response
     testLink = request.GET.get('testLink')
     materialLink = request.GET.get('materialLink')
+    video1 = request.GET.get('video')
     c_id = request.session["chapterId"]
     temp = Chapter.objects.get(chapterId = c_id)
+    temp1 = ChapterVideo.objects.get(chapterId = c_id)
     if testLink:
         temp.tests = testLink
     if materialLink:
         temp.materials = materialLink
+    if video1:
+        temp1.video = video1
     temp.save()
+    temp1.save()
     num = (request.session['chapterId'])
     str1 = "/teachers/explore/"+str(num)
     print(str)

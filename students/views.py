@@ -93,7 +93,7 @@ def explore(request, id):
         return response
     chapter = Chapter.objects.filter(chapterId = id).values()
     chapterVideos = ChapterVideo.objects.filter(chapterId = id).values()
-    return render(request,'explore.html',{'chapter':chapter[0],'chapterVideos':chapterVideos})
+    return render(request,'explore.html',{'chapter':chapter[0],'chapterVideos':chapterVideos[0]})
 
 def add(request,name):
     if "studentName" not in request.session:
